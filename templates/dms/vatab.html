@@ -1,0 +1,62 @@
+{% extends 'templates/main_base.html' %}
+{% load static %}
+
+{% block title %}View List{% endblock %}
+<script src="{% static 'assets/js/forms-tagify.js' %}"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+{% block content %}
+
+    <h1>VIDEO & ALGORITHM LIST</h1>    
+        <table>
+          <thead>
+            <tr>
+              <th>Company Name</th>
+              <th>Project Name</th>
+              <th>Station Name</th>
+              <th>Video File Name</th>
+              <th>Algorithm</th>
+              <th>Weight</th>
+              <th>Skipcount</th>
+              
+              
+            </tr>
+          </thead>
+          <tbody>
+           
+              
+         <br>
+         <fieldset>
+        {% for icotest in all_anof %}
+            <tr>
+               
+                <td> {{ icotest.CompanyName_id }}
+                                  </td>
+               <td> {{ icotest.ProjectName_id }}
+                                  </td>
+              <td> {{ icotest.StationName_id }}
+                                  </td>
+              <td> {{ icotest.VideoFile_id }}
+                                  </td> 
+                                  <td> {{ icotest.Algorithm }}
+                                  </td>
+                                  <td>
+                                    {{ icotest.Weight }}</td>
+                                  <td> {{ icotest.Skipcount }}
+                                  </td>
+                                  
+
+               				
+              </tr>
+                {% endfor %}
+           
+           
+
+      
+            <fieldset>  </tbody>
+        </table>
+       
+ 
+    
+  {% endblock %}
+
+ 

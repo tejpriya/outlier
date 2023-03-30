@@ -1,0 +1,103 @@
+{% extends 'templates/main_base.html' %}
+{% load static %}
+
+{% block title %} tags Update{% endblock %}
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+{% block content %}
+
+  <div class="content-wrapper1">
+    <!-- Content -->
+
+    <div class="container">
+       <h1>Tags Update</h1>
+  <form method="POST"  class="my-form">
+
+    <div class="col-12">
+      <div class="card mb-4">
+       
+        <div class="card-body">
+          
+    <fieldset>
+      {% csrf_token %}
+      {% comment %} {{ form.as_p }} {% endcomment %}
+
+       <div class="form-group">
+        <label class="form-label">vehicles</label><br>
+        {% comment %} {{ form.vehi.label_tag }}<br> {% endcomment %}
+        {{ form.vehi }}
+      </div>
+      <div class="form-group">
+        <label class="form-label">tags</label><br>
+        {{ form.tags }}
+        {% comment %} <input type="text" class="form-control" id="basic-default-tags" name="tags"></input> {% endcomment %}
+         <br> 
+         </div> 
+        
+      
+      
+      <button type="submit" class="btn btn-primary">Submit</button>
+      
+    
+    </div></div></div></div></div>
+
+    
+    </fieldset> </form>
+
+<style>
+{% comment %} .my-form {
+margin-top: 50px;
+width: 700px;
+
+text-transform: uppercase;
+} {% endcomment %}
+
+.form-group {
+margin-bottom: 20px;
+align-items: center;
+
+}
+.btn-primary{
+  margin-left: 50px;
+}
+.form-group input {
+  margin-bottom: 20px;
+  margin-left: 39px;
+  width: 160px;
+  opacity: 0.5;
+  
+  }
+
+
+.form-group select {
+  margin-left: 39px;
+  height: 35px;
+  opacity: 0.5;
+  width: 200px !important;
+}
+
+.container {
+  align-items: center;
+  width: 65%; 
+  margin-top:20px;
+ 
+   height: 85% !important; 
+  }
+</style>
+
+
+
+  {% comment %} <script>
+    function confirmDelete() {
+      if (confirm("Are you sure you want to delete this item?")) {
+        // Code to handle the delete operation
+        console.log("Item deleted");
+      } else {
+        // Code to handle if the user cancels the delete operation
+        console.log("Delete operation cancelled");
+      }
+    }
+    </script> {% endcomment %}
+    {%endblock%}
+ 

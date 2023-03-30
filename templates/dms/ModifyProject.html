@@ -1,0 +1,50 @@
+{% extends 'templates/main_base.html' %}
+{% load static %}
+
+{% block title %}Update Project{% endblock %}
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+{% block content %}
+
+<div class="container">
+  <h1>  Update Project Info </h1>
+  <form method="POST" action=""> 
+    <fieldset>
+        <legend>Project List</legend>
+        {% csrf_token %} 
+         
+        <div class="row" > 
+          <div class="col-md-8">
+            <h3>Existing Project</h3>
+            {% if all_projects  %}
+            <table id="ProjectTable" class="table table-striped" >
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>company</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody >
+                {% for project in all_projects %}
+                  <tr id="project-{{project.id}}">
+                  <td class="cprojectName projectData" name="name">{{project.name}}</td>
+                  <td class="projectcompany projectData" name="address">{{project.company}}</td>
+                  <td > <a href="{% url 'UpdateProject' project.id%}"   > Edit </a></td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+      
+        {% else %}
+          <span> No projects </span> 
+        {% endif %}
+      </div>
+    </div>
+  </fieldset>
+  </form>
+  </div>
+  {%endblock%}
+
+ 

@@ -1,0 +1,299 @@
+{% extends "templates/main_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!-- tile tag -->
+{% block title %}
+<title>icon</title>
+{% endblock %}
+
+{% block stylesheet  %} 
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/bs-stepper/bs-stepper.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/formvalidation/dist/css/formValidation.min.css' %}" />
+{% endblock %}
+
+{% block nav %}
+
+{% endblock %}
+
+<!-- content tag -->
+{% block content %}
+
+ <!-- Content wrapper -->
+ <div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container">
+    <h4 class="py-3 breadcrumb-wrapper mb-4">
+  Image Annotation using Deep Learning
+    </h4>
+    <!-- Default -->
+    <div class="row">
+      <div class="col-12">
+       
+      </div>
+
+      <!-- Default Wizard -->
+      <div class="col-12 mb-4">
+        
+        <div class="bs-stepper wizard-numbered mt-2">
+          <div class="bs-stepper-header">
+            <div class="step" data-target="#account-details1">
+              <button type="button" class="step-trigger">
+               
+                <span class="bs-stepper-label">
+                  <span class="bs-stepper-title">Annotation</span>
+                 
+                </span>
+              </button>
+            </div>
+            
+            {% comment %} <div class="line"></div>
+            <div class="step" data-target="#social-links">
+              <button type="button" class="step-trigger">
+                <span class="bs-stepper-circle">3</span>
+                <span class="bs-stepper-label">
+                  <span class="bs-stepper-title">Replace</span>
+                  
+                </span>
+              </button>
+            </div> {% endcomment %}
+          </div>
+          <div class="bs-stepper-content">
+            <form class="my-form9" method="post">
+              <!-- Account Details -->
+              <div id="account-details1" class="content">
+               
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    
+                    {% csrf_token %}
+             
+                   <div class="form-group">
+                      {% comment %} &nbsp &nbsp  {{ form.input_folder_path.label_tag }}  {% endcomment %}
+                      {% comment %} &nbsp &nbsp   {{ form.input_folder_path }} {% endcomment %}
+                      <label class="form-label">Input folder path</label><br>
+                      &nbsp &nbsp   {{ form.input_folder_path }} 
+                      {% comment %} <input type="text" class="form-control" id="basic-default-Input folder path" name="Input folder path"></input> {% endcomment %}
+                       
+                      
+                    </div>
+                    
+                    {% comment %} <div class="form-group">
+                      &nbsp &nbsp  {{ form.TagifyCustomInlineSuggestion.label_tag }}
+                      &nbsp &nbsp   {{ form.TagifyCustomInlineSuggestion}}
+                    </div> {% endcomment %}
+
+
+                 
+                     {% comment %} <label for="TagifyCustomInlineSuggestion" class="form-label same-width">Class names</label><br>                    <input
+                      id="TagifyCustomInlineSuggestion"
+                      name="TagifyCustomInlineSuggestion"
+                      class="form-control same-width"
+                      placeholder="select vehicles"
+                      
+                    />  {% endcomment %}
+                    <br>
+                 <div class="form-group" >
+                  <label class="form-label">class_names</label>
+                    {% comment %} &nbsp&nbsp {{ form.class_names.label_tag }}<br> {% endcomment %}
+                    &nbsp&nbsp  {{ form.class_names }}
+                    </div><br>
+                    <div class="form-group">
+                      <label class="form-label">tag</label><br>
+                      {% comment %} &nbsp &nbsp {{ form.tag.label_tag }}<br> {% endcomment %}
+                      &nbsp &nbsp {{ form.tag }}
+                    </div>
+
+
+                   
+                    <br>
+                      <div class="form-group  ">
+                        <label class="form-label">type_of_process</label><br>
+                        {% comment %} &nbsp &nbsp {{ form.type_of_process.label_tag }}<br> {% endcomment %}
+                        &nbsp &nbsp {{ form.type_of_process }}
+                      </div>
+                     
+                    </div><br> 
+                  
+                      {% comment %} <label for="TagifyCustomListSuggestion" >Add </label>
+                          <input
+                            id="TagifyCustomListSuggestion"
+                            name="TagifyCustomListSuggestion"
+                            class="form-control same-width"
+                            placeholder="select tags"
+                            style="width: 200%;"       
+                          /> {% endcomment %}
+                     
+				  
+                  
+                     {% comment %} <button class="btn btn-primary" id="b1"> <a href="{% url 'ico'%}">Previous</a></button>  {% endcomment %}
+                    <button type="submit" class="btn btn-primary" onclick="loadData()">Submit</button>
+                    
+                  {% comment %} <button class="btn btn-primary"> <a href="{% url 'clust1'%}">Next</a></button> {% endcomment %}
+                 
+                   
+                 <br><br>
+                
+                  <div id="message"></div>
+
+                </form>
+                <div id="spinner"></div>
+                </div>
+               
+              </div></div>
+              
+              <!-- Social Links -->
+              <form>
+              <div id="social-links" class="content">
+                <div class="content-header mb-3">
+                  
+                  
+                          
+
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /Default Wizard -->
+
+    </div>
+  </div>
+  <!-- / Content -->
+  <div class="content-backdrop fade"></div>
+</div>
+<!-- Content wrapper -->
+</div>
+<!-- / Layout page -->
+</div>
+
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
+
+<!-- Drag Target Area To SlideIn Menu On Small Screens -->
+<div class="drag-target"></div>
+</div>
+<!-- / Layout wrapper -->
+{% block script %}
+<script src="{% static 'assets/vendor/libs/block-ui/block-ui.js' %}"></script>
+<script src="{% static 'assets/vendor/js/bootstrap.js' %}"></script>
+{% endblock %} 
+<style>
+  
+  .my-form9 {
+  
+     text-transform: uppercase;
+     height: 500px;
+    width: 290px;
+    font-size: 16px;
+    padding: 20px 60px 60px 50px;
+    margin-top: -30px;
+    margin-left: 30px;
+  
+    
+  }
+  .container {
+  width: 65%; 
+  margin: 0 auto; 
+   
+  }
+  .btn-primary {
+   
+    width: 65%;
+    height: 35px;
+    display: inline-block;
+    align-items: center;
+
+  } 
+  select {
+    margin-right: 45px;
+   height: 40px;
+    width: 400%;
+    opacity: 0.3;
+    
+
+   
+    } 
+{% comment %} .form-group {
+    margin-bottom: 13px;
+    box-sizing: border-box;
+  } {% endcomment %}
+  
+  
+ .form-group input {
+    width: 400%;
+    height: 40px;
+    margin-left: -4px;
+    opacity: 0.5;
+  } 
+  .h4{
+    margin-top: -5px;
+  }
+  .form-control {
+    width: 150px;
+    height: 140%;
+  }
+  .spinner:not([hidden]) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    width: 80px;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .spinner::after {
+    content: "";
+    width: 80px;
+    height: 80px;
+    border: 2px solid #f3f3f3;
+    border-top: 3px solid #f25a41;
+    border-radius: 100%;
+    will-change: transform;
+    animation: spin 1s infinite linear
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+</style> 
+{% endblock %}
+ 
+
+
+{% block javascript %}
+
+<script>
+
+  function loadData() {
+    $.blockUI({
+      message:
+      '<div class="d-flex justify-content-center"><p class="mb-0">Please wait...</p> <div class="sk-wave m-0"><div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div></div> </div>',
+      // #timeout: 25000,
+      css: {
+      backgroundColor: 'transparent',
+      color: '#fff',
+      border: '0'
+      },
+      overlayCSS: {
+      opacity: 0.5
+      }
+      });
+  }
+ 
+</script>
+{% endblock %}
+
+

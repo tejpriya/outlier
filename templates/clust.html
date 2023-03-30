@@ -1,0 +1,118 @@
+{% extends "templates/main_base.html" %}
+{% load static %}
+
+<!-- tile tag -->
+{% block title %}
+<title>icon</title>
+{% endblock %}
+
+{% block stylesheet  %} 
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/bs-stepper/bs-stepper.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/formvalidation/dist/css/formValidation.min.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/dropzone/dropzone.css' %}" />
+{% endblock %}
+
+{% block nav %}
+
+{% endblock %}
+
+<!-- content tag -->
+{% block content %}
+
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+  
+    <div class="container">
+       
+        <div class="row">
+          
+          <!-- Multi  -->
+          <div class="col-12">
+            <div class="card">
+            
+              <div class="card-body">
+
+                <form method="POST" class="my-form1">
+                  <fieldset>
+                   
+                    {% csrf_token %}
+                    <div class="form-group">
+                      &nbsp &nbsp  {{ form.cropped_images_path.label_tag }}
+                      &nbsp &nbsp   {{ form.cropped_images_path }}
+                    </div>
+                    <div class="form-group">
+                      &nbsp &nbsp  {{ form.moving_path.label_tag }}
+                      &nbsp &nbsp   {{ form.moving_path }}
+                    </div> 
+                    
+                    <button class="btn btn-primary" id="convert-button1">Submit</button>
+                    <input type="button" value="reset" class="btn btn-secondary" id="resetBtn" onClick="this.form.reset()" />
+                  </fieldset>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                </form>
+              
+      
+      <!-- / Content -->
+      <div class="content-backdrop fade"></div>
+    </div>
+    <!-- Content wrapper -->
+  </div>
+  <!-- / Layout page -->
+</div>
+
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
+
+<!-- Drag Target Area To SlideIn Menu On Small Screens -->
+<div class="drag-target"></div>
+</div>
+<!-- / Layout wrapper -->
+
+{% comment %} {% block script %}
+<script src="{% static 'assets/vendor/libs/dropzone/dropzone.js' %}"></script>
+<script src="{% static 'assets/js/forms-file-upload.js' %}"></script>
+{% endblock %}    {% endcomment %}
+<style>
+  .my-form1 {
+    margin-top: 60px;
+    text-transform: uppercase;
+   
+    display: flex;
+  }
+  
+  .container {
+    width: 50%; 
+   height: 50%; 
+  }
+    select {
+        width: 70%;
+        padding: 6px 12px;
+        margin: 18px 0;
+       
+        }
+    
+      </style>
+{% endblock %}
+ 
+
+
+{% block javascript %}
+<script>
+  document.getElementById('convert-button1').addEventListener('click', function() {
+    // Call an endpoint to convert the XML file to TXT
+    fetch('/clust/')
+      .then(response => response.text())
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
+  });
+
+  </script>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'templates/main_base.html' %}
+{% load static %}
+
+{% block title %}View List{% endblock %}
+<script src="{% static 'assets/js/forms-tagify.js' %}"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+{% block content %}
+
+    <h1>ANNOTATION PROCESS LIST</h1>    
+        <table>
+          <thead>
+            <tr>
+              <th>Input Path</th>
+              {% comment %} <th>Class names</th> {% endcomment %}
+              
+              <th>Type of process</th>
+              
+              
+              
+            </tr>
+          </thead>
+          <tbody>
+           
+              
+         <br>
+         <fieldset>
+        {% for anott in all_ano %}
+            <tr>
+               
+                <td> {{ anott.input_folder_path }}
+                                  </td>
+               {% comment %} <td> {{ anott.ProjectName_id }}
+                                  </td> {% endcomment %}
+              <td> {{ anott.type_of_process }}
+                                  </td>
+                    				
+              </tr>
+                {% endfor %}
+           
+           
+
+      
+            <fieldset>  </tbody>
+        </table>
+       
+ 
+    
+  {% endblock %}
+
+ 

@@ -1,0 +1,109 @@
+
+{% extends 'templates/main_base.html' %}
+{% load static %}
+
+{% block title %}Edit Video File{% endblock %}
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+{% block content %}
+<form method="POST" action="" class="as_t" enctype="multipart/form-data"> 
+
+  {% csrf_token %} 
+
+
+  <hr class="my-0" />
+  <div class="card-body">
+    
+      <div class="row">
+       
+        <div class="mb-3 col-md-6"> 
+    <label class="form-label" for="basic-default-company" style="margin: 10px ;">company</label><br> 
+     {{form.CompanyName}}  </div>
+ 
+     <div class="mb-3 col-md-6">
+    <label class="form-label" for="basic-default-project" style="margin: 10px;">project</label> <br> 
+    {{form.ProjectName}}
+   </div>
+    <div class="mb-3 col-md-6">
+    <label class="form-label" for="basic-default-location" style="margin: 10px;" >location</label><br>
+     {{form.StationName}} </div>
+  <div class="mb-3 col-md-6 form-element">
+     <label class="form-label" for="basic-default-CameraNo" name="CameraNo" style="margin: 10px;">CameraNo</label><br>
+    {{form.CameraNo}}</div>
+  <div class="mb-3 col-md-6">
+    <label class="form-label" for="basic-default-cModel"  name="cModel" style="margin: 10px;">CameraModel</label> <br>
+     {{form.CModel}} </div>  
+  <div class="mb-3 col-md-6 form-element">
+     <label class="form-label" for="basic-default-CHeight"  name="CHeight" style="margin: 10px;">Camera Height</label><br> 
+    {{form.CHeight}} </div>
+  
+  <div class="mb-3 col-md-6 ">
+     <label class="form-label" for="basic-default-VideoStartTime" name="VideoStartTime" style="margin: 10px;">video Start Time</label> <br>
+     {{form.VideoStartTime}} </div>
+  <div class="mb-3 col-md-6"> 
+     <label class="form-label" for="basic-default-VideoEndTime" name="VideoEndTime" style="margin: 10px;">Video End Time</label> <br> 
+    {{form.VideoEndTime}} </div>
+    <div class="mb-3 col-md-6">
+      <label class="form-label" for="basic-default-CView" name="CView" style="margin: 10px;">Camera View</label><br>
+     {{form.CView}} </div>
+  <div class="mb-3 col-md-6"> 
+    <label class="form-label" for="basic-default-LICate" name="LICate" style="margin: 10px;">Light Intensity</label><br> 
+    {{form.LICate}} </div>
+  <div class="mb-3 col-md-6 ">
+     <label class="form-label" for="basic-default-VideoFormat" name="VideoFormat" style="margin: 10px;">Video File Format</label><br> 
+     {{form.VideoFormat}} </div>   
+    <div class="mb-3 col-md-6"> 
+      <label class="form-label" for="basic-default-FileName"  name="FileName" style="margin: 10px;">FileName</label> <br>
+    {{form.FileName}} </div>
+  <div class="mb-5"> 
+    <label class="form-label" name="VideoFile" for="VideoFile" style="margin: 10px;">VideoFile</label><br><br>  
+    <video autoplay="autoplay" controls muted  width:"100px" height="100px"> 
+      <source src="{{DRIVE}}{{form.instance.VideoFile}}" >  </video>
+    <br> <br>  {{form.VideoFile}}  <br>
+  </div>
+    <div class="mb-3 col-md-6"> 
+      <label class="form-label" for="basic-default-Remarks" name="Remarks" style="margin: 10px;">
+        Remarks</label> <br> 
+    {{form.Remarks}}
+   </div>
+  <div class="mb-3 col-md-6">
+     <input type="hidden" id="videostatus" name="videostatus" value="Updated" style="margin: 10px;"> <br>
+     {{form.videostatus}} </div>
+    </div>
+   <!-- {{ form }}  -->
+
+   <button type="submit" class="btn btn-primary">Submit</button>
+   <input type="button" value="reset" class="btn btn-secondary" id="resetBtn" onClick="this.form.reset()" style="width: 100px;" />
+  </div></div>
+</form> 
+<style>
+  form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  input, select, .VideoFile {
+    height: 40px;
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    line-height: 0.6rem;
+   
+  }
+  
+  .form-element {
+    height: 43px;
+    width: 200px !important;
+    
+}
+
+
+  .VideoFile {
+    margin-right: 12px;
+  }
+  
+</style>
+
+  {%endblock%}

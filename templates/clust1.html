@@ -1,0 +1,95 @@
+{% extends 'templates/main_base.html' %}
+{% load static %}
+
+{% block title %}xml {% endblock %}
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+{% block content %}
+<h1 align="center">OUTLIER DETETCION</h1>
+<div class="content-wrapper1">
+<div class="container1">
+  <div class="col-12">
+    <div class="card mb-4">
+      
+      <div class="card-body">
+  <form method="POST" class="my-form1">
+    <fieldset>
+ 
+        {% csrf_token %}
+
+        <div class="form-group1">
+        <br><br>
+          <label class="form-label">image_dir</label><br>
+          <input type="text" class="form-control" id="basic-default-image_dir" name="image_dir"></input>
+        </div>
+
+        {% comment %} <div class="form-group1">
+        
+          <label class="form-label">mov_dir</label><br>
+          <input type="text" class="form-control" id="basic-default-mov_dir" name="mov_dir"></input>
+        </div> {% endcomment %}
+
+        {% comment %} <div class="form-group1">
+        
+          <label class="form-label">threshold</label><br>
+          <input type="text" class="form-control" id="basic-default-threshold" name="threshold"></input>
+        </div> {% endcomment %}
+                            {% comment %} <div class="form-group">
+                              &nbsp &nbsp  {{ form.myroot_dir.label_tag }}
+                              &nbsp &nbsp   {{ form.myroot_dir }}
+                            </div> 
+                            <div class="form-group">
+                              &nbsp &nbsp  {{ form.txt_dir.label_tag }}
+                              &nbsp &nbsp   {{ form.txt_dir }}
+                            </div>  {% endcomment %}
+                            
+          &nbsp &nbsp <button class="btn btn-primary" id="convert-button2">Submit</button>
+          {% comment %} <button class="btn btn-primary" id="convert-button2">Count</button> {% endcomment %}
+          &nbsp &nbsp&nbsp &nbsp   <input type="button" value="reset" class="btn btn-secondary" id="resetBtn" onClick="this.form.reset()" />
+     </fieldset>
+</div></div></div></div>
+</div></form>
+
+<style>
+  .my-form1 {
+    margin-top: 20px;
+    text-transform: uppercase;
+        {% comment %} text-align: center; {% endcomment %}
+    {% comment %} display: flex; {% endcomment %}
+  }
+  .container1 {
+    width: 45%; 
+    margin-top:40px;
+     height: 90px; 
+    }
+  .form-group1 {
+    margin-bottom: 40px;
+  }
+  .mb-4{
+    margin-bottom: 90px !important;
+    width: 550px;
+    height: 400px;
+  }
+  .form-group1 input {
+    width: 90%;
+    padding: 6px 12px;
+    margin-left: -10px;
+   opacity: 0.5;
+   height: 40px;
+
+  }
+</style>
+  {%endblock%}
+
+  {% block javascript %}
+  <script>
+    document.getElementById('convert-button2').addEventListener('click', function() {
+      // Call an endpoint to convert the XML file to TXT
+      fetch('/clust1/')
+        .then(response => response.text())
+        .then(data => console.log(data))
+        .catch(error => console.error(error));
+    });
+  </script>
+    {%endblock%}

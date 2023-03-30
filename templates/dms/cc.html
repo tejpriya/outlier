@@ -1,0 +1,118 @@
+{% extends "templates/main_base.html" %}
+{% load static %}
+
+<!-- tile tag -->
+{% block title %}
+<title>icon</title>
+{% endblock %}
+
+{% block stylesheet  %} 
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/bs-stepper/bs-stepper.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/formvalidation/dist/css/formValidation.min.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/dropzone/dropzone.css' %}" />
+{% endblock %}
+
+{% block nav %}
+
+{% endblock %}
+
+<!-- content tag -->
+{% block content %}
+
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+    <!-- Content -->
+  
+    <div class="container">
+        <h4 class="py-3 breadcrumb-wrapper mb-4"><span class="text-muted fw-light">Forms /</span> File upload</h4>
+
+        <div class="row">
+          <!-- Basic  -->
+          <div class="col-12">
+            <div class="card mb-4">
+              
+              
+            </div>
+          </div>
+          <!-- /Basic  -->
+          <!-- Multi  -->
+          <div class="col-12">
+            <div class="card">
+              <h5 class="card-header">Multiple</h5>
+              <div class="card-body">
+                <form action="/upload" class="dropzone needsclick" id="dropzone-multi">
+                  <div class="dz-message needsclick">
+                    Drop files here or click to upload
+                    
+                  </div>
+                  <div class="fallback">
+                    <input name="file" type="file" />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- Multi  -->
+        </div>
+      </div>
+      <!-- / Content -->
+      {% block script %}
+      <script src="{% static 'assets/vendor/libs/dropzone/dropzone.js' %}"></script>
+      <script src="{% static 'assets/js/forms-file-upload.js' %}"></script>
+      {% endblock %} 
+<style>
+  .my {
+    width: 500px !important; 
+    margin: 0 auto; 
+    text-transform: uppercase;
+    height: 50%;
+    font-size: 16px;
+    padding: 20px 60px 60px 60px;
+    margin-top: 0.8px;
+    
+  }
+  .container {
+    width: 50%; 
+   height: 60%; 
+  }
+    select {
+        width: 70%;
+        padding: 6px 12px;
+        margin: 18px 0;
+        box-sizing: border-box;
+        }
+    .form-group {
+        margin-bottom: 20px;
+      }
+      
+      .form-group input {
+        width: 70%;
+        padding: 6px 12px;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+      </style>
+
+
+
+
+{% endblock %}
+ 
+
+
+{% block javascript %}
+
+
+
+{% endblock %}
+
+
+{% block script %}
+
+
+ 
+
+
+{% endblock %}

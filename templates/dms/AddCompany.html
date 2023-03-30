@@ -1,0 +1,57 @@
+{% extends 'templates/main_base.html' %}
+{% load static %}
+
+{% block title %}Add Company{% endblock %}
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+{% block content %}
+
+    
+<div class="container">
+    <h1>  Add company </h1> 
+    <form method="POST" class="my-form">
+      <fieldset>
+        <legend>New Company to be added</legend>
+        {% csrf_token %}
+        <div class="form-group">
+          {{ form.name.label_tag }}
+          {{ form.name }}
+        </div>
+        <div class="form-group">
+          {{ form.address.label_tag }}
+          {{ form.address }}
+        </div>
+        <div class="form-group">
+          {{ form.phone.label_tag }}
+          {{ form.phone }}
+        </div>
+        <div class="form-group">
+          {{ form.email.label_tag }}
+          {{ form.email }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="button" value="reset" class="btn btn-secondary" id="resetBtn" onClick="this.form.reset()" />
+      </fieldset>
+    </form>
+</div>
+
+<style>
+.my-form {
+  margin-top: 50px;
+  text-align: left;
+  display: flex;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 6px 12px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+</style>
+    
+{% endblock %}

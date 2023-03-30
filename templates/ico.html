@@ -1,0 +1,457 @@
+ {% extends "templates/main_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!-- tile tag -->
+{% block title %}
+<title>icon</title>
+{% endblock %}
+
+{% block stylesheet  %} 
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/bs-stepper/bs-stepper.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/formvalidation/dist/css/formValidation.min.css' %}" />
+{% endblock %}
+
+{% block nav %}
+
+{% endblock %}
+
+<!-- content tag -->
+{% block content %}
+
+ <!-- Content wrapper -->
+ <div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="container">
+    <h4 class="py-3 breadcrumb-wrapper mb-4">
+  Image Annotation using Deep Learning
+    </h4>
+    <!-- Default -->
+    <div class="row">
+      <div class="col-12">
+       
+      </div>
+
+      <!-- Default Wizard -->
+      <div class="col-12 mb-4">
+        
+        <div class="bs-stepper wizard-numbered mt-2">
+          <div class="bs-stepper-header">
+            <div class="step" data-target="#account-details">
+              <button type="button" class="step-trigger">
+               
+                <span class="bs-stepper-label">
+                  <span class="bs-stepper-title">Video & Algorithm </span>
+                 
+                </span>
+              </button>
+            </div>
+            
+            {% comment %} <div class="line"></div>
+            <div class="step" data-target="#social-links">
+              <button type="button" class="step-trigger">
+                <span class="bs-stepper-circle">3</span>
+                <span class="bs-stepper-label">
+                  <span class="bs-stepper-title">Replace</span>
+                  
+                </span>
+              </button>
+            </div> {% endcomment %}
+          </div>
+          <div class="bs-stepper-content">
+            <form class="my-form" method="post">
+              <!-- Account Details -->
+              <div id="account-details" class="content">
+               
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    
+                    {% csrf_token %}
+             
+               
+                <label class="form-label" for="basic-default-company">select company</label>
+                <select class="form-select CompanyName" id="basic-default-company" name="CompanyName">
+                  {% for comp in all_companies  %}
+                 {{ comp }}
+                  <option selected="" value="{{comp.id}}" data-icon="bx bxl-codepen">{{comp.name}}</option>
+                  {% endfor %}
+              
+                </select><br>
+                <!--Projectname-->
+                <label class="form-label" for="basic-default-project">project</label>
+                <select class="form-select ProjectName" id="basic-default-project" name="ProjectName" ></select>
+                <br>
+                 <!--location-->
+                 <label class="form-label" for="basic-default-location">location</label>
+                   <select class="form-select  StationName" id="basic-default-location"  name="StationName" ></select>
+                   <br>
+                  <!--video-->
+                  <label class="form-label" for="basic-default-VideoFile">VideoFile</label>
+
+                 
+                
+                  <select class="form-select VideoFile" id="basic-default-VideoFile" name="VideoFile" >
+                  
+                </select>  <br>
+                {% comment %} <label class="form-label" name="VideoFile1" for="VideoFile1">VideoFile</label>
+                <input type="file" id="VideoFile1" name="VideoFile1" class="form-control"  required/><br> {% endcomment %}
+              
+                        
+               <label class="form-label">select algorithm</label>
+       
+                <input type="text" class="form-control" id="basic-default-algorithm" name="Algorithm"></input>
+                 <br>      
+                  <label class="form-label" for="basic-default-weight">weight</label> 
+                   <input type="text" class="form-control" id="basic-default-weight" name="Weight"></input>
+                  <br>
+                  <label class="form-label" for="basic-default-skip">Skip count</label> 
+                   <input type="text" class="form-control" id="basic-default-skip" name="Skipcount"></input>
+                  <br>
+                  <div class="col-12 d-flex justify-content-between">
+                    &nbsp <button  class="btn btn-primary" onclick="loadData()">Submit</button> 
+                   
+                    &nbsp <button class="btn btn-primary"> <a href="{% url 'ico2'%}">Next</a></button>
+                 
+                   
+                  </div><br><br>
+                  
+                  <div id="message"></div>
+                
+
+                </form>
+                </div> <div hidden id="spinner"></div>
+              </div></div>
+              {% comment %} <div class="progress">
+                <div
+                  class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+                  role="progressbar"
+                  style="width: 20%"
+                  aria-valuenow="20"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                ></div>
+              </div>
+              
+            {% endcomment %}
+              <!-- Personal Info -->
+              
+              {% comment %} <div id="personal-info" class="content">
+              
+              
+                <div class="row g-3">
+                  <div class="col-sm-6">
+                    <form method="post" >
+                    {% csrf_token %}
+             
+                <label class="form-label" for="basic-default-op">path</label> 
+                    <input type="text" class="form-control" id="basic-default-op" name="op"></input> {% endcomment %}
+
+                    {% comment %} <label class="form-label" for="basic-default-api">select one</label> 
+                    <select id="basic-default-api" name="basic-default-api" class="form-control">
+                      <option value="add_id">ADD ID</option>
+                      <option value="remove_id">REMOVE ID</option>
+                      <option value="crop">CROP IMAGE</option>
+                  </select>
+
+                  <label class="form-label" for="basic-default-vehicles">select vehicle</label>
+                      <select class="form-select vehicles" id="basic-default-vehicles" name="vehicles" >
+                      {% for vehi in vehicles  %}
+                    
+                     <option selected="" value="{{vehi.id}}" data-icon="bx bxl-codepen">{{vehi.vehi}}</option>
+                     
+                     {% endfor %} 
+                    </select> {% endcomment %}
+
+
+                    
+                     {% comment %} <label class="form-label" for="basic-default-vehicles">select vehicle</label>
+                    <select class="form-select vehicles" id="basic-default-vehicles" name="vehicles" >
+                    {% for vehi in vehicles %}
+                  
+                   <option selected="" value="{{vehi.id}}" data-icon="bx bxl-codepen">{{vehi.vehi}}</option>
+                   
+                   {% endfor %} </select>   {% endcomment %}
+
+                  {% comment %} <div id="progress-bar-container">
+                    <div id="progress-bar" style="width: 0;"></div>
+                  </div> {% endcomment %}
+                {% comment %} </div><br><br><br>
+                  <div class="col-12 d-flex justify-content-between">
+                    <button class="btn btn-primary btn-prev">
+                      <i class="bx bx-chevron-left bx-sm ms-sm-n2"></i>
+                      <span class="d-sm-inline-block d-none">Previous</span>
+                    </button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                   
+                  </form>  </div>
+                </div>
+              </div> {% endcomment %}
+            
+              <!-- Social Links -->
+              <form>
+              <div id="social-links" class="content">
+                <div class="content-header mb-3">
+                  
+                  
+                          
+
+                </div>
+              </div>
+            </form>
+           
+          </div>
+        </div>
+      </div>
+      <!-- /Default Wizard -->
+
+    </div>
+  </div>
+  <!-- / Content -->
+  <div class="content-backdrop fade"></div>
+</div>
+<!-- Content wrapper -->
+</div>
+<!-- / Layout page -->
+</div>
+
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
+
+<!-- Drag Target Area To SlideIn Menu On Small Screens -->
+<div class="drag-target"></div>
+</div>
+<!-- / Layout wrapper -->
+{% block script %}
+<script src="{% static 'assets/vendor/libs/block-ui/block-ui.js' %}"></script>
+{% endblock %}
+<style>
+  {% comment %} .my-form {
+    max-width: 1190px;
+    margin: 0 auto;
+    height: 500px;
+    width: 100%; 
+    padding: 20px 60px 60px 60px;
+    margin-top: 0.8px;
+  } {% endcomment %}
+  .container {
+    width: 65%; 
+    height: auto;
+    {% comment %} height: 50%; {% endcomment %}
+    
+    
+    
+   
+   margin: 0 auto; 
+  }
+.my-form
+{
+  padding: 20px 60px 60px 60px;
+  align-items: center;
+  width: 150%; 
+  
+  
+}
+
+ .form-group {
+  margin: 0 auto;
+  display: flex;
+    margin-bottom: 13px;
+    align-items: center; 
+  }
+  
+  .form-group input {
+    display: flex;
+    width: 160px;
+    padding: 6px 12px;
+    margin: 0 auto;
+    margin-top: -20px;
+    
+    align-items: center;
+    
+  } 
+
+  .spinner:not([hidden]) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .spinner::after {
+    content: "";
+    width: 80px;
+    height: 80px;
+    border: 2px solid #f3f3f3;
+    border-top: 3px solid #f25a41;
+    border-radius: 100%;
+    will-change: transform;
+    animation: spin 1s infinite linear
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+</style> 
+{% endblock %}
+ 
+
+
+
+
+
+{% block javascript %}
+
+
+<script>
+
+ // basic-default-company
+ console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$')
+    //   Select company
+ $('#basic-default-company').on('click', function (e) {
+ 
+        var optionSelected = $("option:selected", this);
+        var id = this.value;
+       
+        if (id != ''){
+          $.ajax({
+            url: "{% url 'get_projects' %}",
+            method: 'get',
+            data: {
+                'id':id,
+            },
+            dataType: 'json',
+            success: function(data){
+              console.log(data)
+              if(1){
+                var txt =  '<select class="form-select" id="basic-default-project" ><option selected="" disabled>...</option>'
+           
+                  data.data.forEach(function(item){
+
+                  txt += '<option  value='+ item.id +'><a href=1>'+ item.name +'</a></option>'
+                });
+                
+                
+                txt += '</select>'
+                $('#basic-default-project').html(txt)
+               
+                // txt += '</div>'
+                // $('#list_camera').html(txt)
+                
+                // $('html,body').animate({scrollTop:distance},500);
+              }
+            }
+          })
+  
+        }
+        
+    });
+
+     //   Select project
+ $('#basic-default-project').on('change', function (e) {
+        
+        var optionSelected = $("option:selected", this);
+        var id = this.value;
+        console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', id)
+        if (id != ''){
+          $.ajax({
+            url: "{% url 'get_stations' %}",
+            method: 'get',
+            data: {
+                'id':id,
+            },
+            dataType: 'json',
+            success: function(data){
+              if(1){
+                var txt =  '<select class="form-select" id="basic-default-location" ><option selected="" disabled>...</option>'
+           
+                  data.data.forEach(function(item){
+
+                  txt += '<option  value='+ item.id +'><a href=1>'+ item.name +'</a></option>'
+                });
+                txt += '</select>'
+                $('#basic-default-location').html(txt)
+               
+                // txt += '</div>'
+                // $('#list_camera').html(txt)
+                
+                // $('html,body').animate({scrollTop:distance},500);
+              }
+            }
+          })
+  
+        }
+        
+    });
+  
+      // video hiden
+
+       $('#basic-default-location').on('change', function (e) {
+        
+        var optionSelected = $("option:selected", this);
+        var id = this.value;
+        console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$', id)
+        if (id != ''){
+          $.ajax({
+            url: "{% url 'get_videos'%}",
+            method: 'get',
+            data: {
+                'id':id,
+            },
+            dataType: 'json',
+            success: function(data){
+              if(1){
+                var txt =  '<select class="form-select" id="basic-default-VideoFile" ><option selected="" disabled>...</option>'
+           
+                  data.data.forEach(function(item){
+
+                  txt += '<option  value='+ item.id +'><a href=1>'+ item.FileName +'</a></option>'
+                });
+                txt += '</select>'
+                $('#basic-default-VideoFile').html(txt)
+               
+              
+              }
+            }
+          })
+  
+        }
+        
+    }); 
+
+
+
+   
+
+
+    function loadData() {
+      $.blockUI({
+        message:
+        '<div class="d-flex justify-content-center"><p class="mb-0">Please wait...</p> <div class="sk-wave m-0"><div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div> <div class="sk-rect sk-wave-rect"></div></div> </div>',
+        // #timeout: 25000,
+        css: {
+        backgroundColor: 'transparent',
+        color: '#fff',
+        border: '0'
+        },
+        overlayCSS: {
+        opacity: 0.5
+        }
+        });
+    }
+   
+  </script>
+   
+
+{% endblock %}

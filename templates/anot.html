@@ -1,0 +1,200 @@
+{% extends "templates/main_base.html" %}
+{% load static %}
+
+<!-- tile tag -->
+{% block title %}Adding Tags {% endblock %}
+
+{% block stylesheet  %} 
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/tagify/tagify.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/bs-stepper/bs-stepper.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/bootstrap-select/bootstrap-select.css' %}" />
+<link rel="stylesheet" href="{% static 'assets/vendor/libs/formvalidation/dist/css/formValidation.min.css' %}" />
+{% endblock %}
+
+{% block nav %}
+
+{% endblock %}
+
+<!-- content tag -->
+{% block content %}
+  <!-- Content wrapper -->
+  
+  <div class="content-wrapper1">
+    <!-- Content -->
+
+    <div class="container">
+      
+
+      <div class="row">
+        <!-- Select2 -->
+        <form method ="post" class="my-form4">
+
+          <!-- Tagify -->
+          <div class="col-12">
+            <div class="card mb-4">
+            
+              <div class="card-body1">
+                    <fieldset>
+                      <div class="col-md-6 mb-4">
+                        {% csrf_token %}
+                      
+                        <div class="form-group">
+                          {{ form.vehi.label_tag }}<br>
+                          &nbsp &nbsp   {{ form.vehi }}
+                        </div>
+                        <div class="form-group">
+                          {{ form.tags.label_tag }}<br>
+                          &nbsp &nbsp   {{ form.tags }}
+                        </div>
+
+                      
+                        {% comment %} <label for="tagify_options" class="form-label">Custom List Suggestions</label> {% endcomment %}
+                        {% comment %} <input type="text" id="tagify-input" name="tagify_options" placeholder="" />
+                        <input type="hidden" id="id_tagify_options" name="tagify_options" /> {% endcomment %}
+                        {% comment %} <label for="TagifyCustomListSuggestion" class="form-label">Custom List Suggestions</label>
+                        <input type="text" id="TagifyCustomListSuggestion" name="tc"> {% endcomment %}
+                          {% comment %} <input id="TagifyCustomListSuggestion" name="TagifyCustomListSuggestion" class="form-control" value=""/> {% endcomment %}
+                      
+                        <br>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                    </fieldset>
+              </div>
+            </div>
+          </div>
+        </form>
+                 
+          
+          
+
+               
+             
+            
+          <table class="t1">
+            <thead>
+              <tr>
+                <th>VEHICLES</th>
+                <th>TAGS</th>
+                <th>EDIT </th>
+                {% comment %} <th>Action</th> {% endcomment %}
+                
+              </tr>
+            </thead>
+            <tbody>
+              <br>
+          {% for anof in all_anof %}
+              <tr id="anof-{{anof.id}}">
+                  <td>
+                    {{ anof.vehi }}</td>
+                  <td> {{ anof.tags}}
+                  </td>
+                  <td><a href="{% url 'tagsupdate' anof.id %}" > 
+                      Edit </a></td>
+                </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+        </div>
+        <!--/ Tagify -->
+
+       
+      </div>
+    </div>
+    <!-- / Content -->
+    <div class="content-backdrop fade"></div>
+</div>
+<!-- Content wrapper -->
+</div>
+<!-- / Layout page -->
+</div>
+
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
+
+<!-- Drag Target Area To SlideIn Menu On Small Screens -->
+<div class="drag-target"></div>
+</div>
+<!-- / Layout wrapper -->
+
+
+<style>
+   .my-form4 {
+    margin-top: 60px;
+    opacity: 0.8;
+    border-radius: 19px;
+    margin-left: 60px;
+    text-transform: uppercase;
+  } 
+  .form-group {
+    margin-bottom: 30px;
+    width: 300px;
+    margin: 30px;
+    align-items:center;
+    {% comment %} margin-left: 49%; {% endcomment %}
+    
+  }
+ .card-body{
+  width:150px;
+  height: 250px;
+  align-items: center;
+ }
+  .form-group input
+  {
+    margin-left: -4px;
+    
+    {% comment %} margin-left: 30%; {% endcomment %}
+    height: 45px;
+   
+    opacity: 0.5;
+}
+  .container {
+    margin-left: 10%;
+    align-items: center;
+    width: 700px; 
+    height: 900px; 
+    }
+    select {
+      {% comment %} margin-left: 9%; {% endcomment %}
+      height: 35px;
+      width: 300px;
+      opacity: 0.5;
+      {% comment %} margin-left:100px; {% endcomment %}
+    }
+    t1{
+      height:50%;
+      width: 60%;
+      margin-left: -30px;
+    }
+    .btn-primary{
+      margin-left: 50px;
+    }
+  
+  {% comment %} .form-group input {
+    width: 50%;
+    padding: 6px 12px;
+    margin: 18px 0;
+    box-sizing: border-box;
+  } {% endcomment %}
+</style>
+
+{% endblock %}
+ 
+
+
+{% block javascript %}
+
+
+{% endblock %}
+
+
+{% block script %}
+
+
+
+  <script src="{% static 'assets/js/forms-tagify.js' %}"></script>
+  <script>
+    var input = document.querySelector('#id_tags');
+    new Tagify(input);
+  </script>
+
+{% endblock %}

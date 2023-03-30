@@ -1,0 +1,80 @@
+{% extends 'templates/main_base.html' %}
+{% load static %}
+
+{% block title %}View List{% endblock %}
+<script src="{% static 'assets/js/forms-tagify.js' %}"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+{% block content %}
+
+    <h1>VEHICLE LIST</h1>    
+        <table>
+          <thead>
+            <tr>
+              <th>VEHICLES</th>
+              <th>TAGS</th>
+              {% comment %} <th>Action</th> {% endcomment %}
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% comment %} {% for anof in all_anof %} {% endcomment %}
+            {% comment %} <tr>
+              {% for vehi,tags in anof.items %}
+                <td>{{ vehi }}  </td>
+                  <td>{{ tags[0]['value'] }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+         {% endcomment %}
+            {% comment %} {% if anof %}
+              <tr>
+                {% for vehi,tags in anofs %}
+                <th> {{ vehi }}</th>
+                {% endfor %}
+              </tr>
+              {% for i in range(0, len(anofs[a])) %}
+              <tr>
+                {% for vehi,tags in anofs %}
+                <td>{{ tags[i] }}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+             {% else %}
+             <span> No videos </span> 
+             {% endif %} {% endcomment %}
+
+         <br>
+        {% for anof in all_anof %}
+            <tr id="anof-{{anof.id}}">
+                <td>
+                  {{ anof.vehi }}</td>
+                <td> {{ anof.tags}}
+                </td>
+                <td><a href="{% url 'tagsupdate' anof.id %}" > 
+                    Edit </a></td>
+              </tr>
+                {% endfor %}
+           
+           
+
+      {% comment %} {% for anof in all_anof %}
+            <tr>
+                <td>
+                  {{ anof.vehi }}
+                
+                </td>
+               <td>
+                {% for tag in anof.tags.all %}
+                {{ tags.value }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+               </td>
+            </tr>
+            {% endfor %} {% endcomment %}
+          </tbody>
+        </table>
+       
+ 
+    
+  {% endblock %}
+
+ 

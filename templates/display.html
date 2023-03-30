@@ -1,0 +1,44 @@
+{% extends 'templates/main_base.html' %}
+{% load static %}
+
+{% block title %}View List{% endblock %}
+<script src="{% static 'assets/js/forms-tagify.js' %}"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+{% block content %}
+
+    <h1>VEHICLE LIST</h1>    
+        <table>
+          <thead>
+            <tr>
+              <th>VEHICLES</th>
+              <th>TAGS</th>
+              
+              
+            </tr>
+          </thead>
+          <tbody>
+           
+              
+         <br>
+         <fieldset>
+        {% for anof in all_anof %}
+            <tr>
+                <td>
+                  {{ anof.vehi }}</td>
+                <td> {{ anof.tags}}
+                </td>
+              
+              </tr>
+                {% endfor %}
+           
+           
+
+      
+            <fieldset>  </tbody>
+        </table>
+       
+ 
+    
+  {% endblock %}
+
+ 
